@@ -1,0 +1,52 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./extent-test-output/screenshots:/usr/share/nginx/html
+
+  grafana:
+    image: grafana/grafana
+    env_file:
+      - .env
+    user: "472"
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+      - PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+      - GF_PATHS_DATA=/var/lib/grafana
+      - GF_PATHS_HOME=/usr/share/grafana
+      - GF_PATHS_LOGS=/var/log/grafana
+      - GF_PATHS_PLUGINS=/var/lib/grafana/plugins
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+    working_dir: /usr/share/grafana
+    ports:
+      - 3000:3000
+    labels:
+      - maintainer=Grafana Labs <hello@grafana.com>
+    runtime: runc
+    volumes:
+    - ./dashboards:/var/lib/grafana/dashboards
+    - ./dashboards/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+    - ./datasources/influxdb_datasource.yaml:/etc/grafana/provisioning/datasources/influxdb_datasource.yaml
+
+
+  influxdb:
+    image: influxdb:1.8
+    hostname: e1e255128afa
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - INFLUXDB_VERSION=1.8.10
+    volumes:
+      - /var/lib/influxdb
+    ports:
+      - 8086:8086
+    runtime: runc
+
+volumes:
+  grafana_data:

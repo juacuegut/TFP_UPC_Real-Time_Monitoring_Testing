@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    uid: a321799d-ee71-4246-a5d4-7b32ceefaecb
+    type: influxdb
+    access: proxy
+    url: http://${HOST_IP}:8086
+    database: selenium
+    user: admin
+    password: admin123
