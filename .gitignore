@@ -3,5 +3,6 @@
 src/test/java/.DS_Store
 src/test/resources/.DS_Store
 OrangeHRM-Automation-Real-Time-Monitoring.iml
+.env
 target
 
