@@ -1,4 +1,4 @@
-# Real-time Test Monitoring with Grafana and Jira Integration
+# Real-time Monitoring of Testing with Grafana and Jira Integration
 
 This repository contains the source code and necessary resources to implement the real-time test monitoring solution with Grafana and Jira integration, as described in the postgraduate work "Real-time Test Monitoring with Grafana and Jira Integration to Improve Efficiency in Error Detection and Correction" by Juan Manuel Cuerva Gutiérrez.
 
