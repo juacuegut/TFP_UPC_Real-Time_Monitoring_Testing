@@ -5,6 +5,7 @@ import com.orangehrm.annotations.JiraCreateIssue;
 import com.aventstack.extentreports.model.Log;
 import com.orangehrm.driver.DriverManager;
 import com.orangehrm.enums.ConfigProperties;
+import com.orangehrm.utils.*;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.influxdb.dto.Point;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -12,10 +13,6 @@ import org.testng.*;
 import com.orangehrm.reports.ExtentLogger;
 import com.orangehrm.reports.ExtentManager;
 import com.orangehrm.reports.ExtentReport;
-import com.orangehrm.utils.InfluxDBUtils;
-import com.orangehrm.utils.JiraUtils;
-import com.orangehrm.utils.ReadPropertyFile;
-import com.orangehrm.utils.ScreenshotUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,9 +56,9 @@ public class Listener implements ITestListener, ISuiteListener {
 
         if (islogIssue) {
 
-            JiraUtils JiraUtils = new JiraUtils("https://yourjira.atlassian.net",
+            JiraUtils JiraUtils = new JiraUtils(EnvUtils.getEnvVariable("JIRA_URL"),
 
-                    "your_username@email.com", "you_jira_access_token", "your_project_abbreviation");
+                    EnvUtils.getEnvVariable("JIRA_USER"),EnvUtils.getEnvVariable("JIRA_TOKEN"), EnvUtils.getEnvVariable("JIRA_PROJECT"));
 
             List<Log> logs = ExtentManager.getExtentTest().getModel().getLogs();
             StringBuilder detailsList = new StringBuilder();

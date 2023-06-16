@@ -9,9 +9,7 @@ import org.influxdb.dto.Query;
 
 public class InfluxDBUtils {
 
-    static Dotenv dotenv = Dotenv.configure().load();
-    static String hostIP = dotenv.get("HOST_IP");
-    private static final InfluxDB INFLUXDB = InfluxDBFactory.connect("http://"+hostIP+":8086", "admin", "admin123");
+    private static final InfluxDB INFLUXDB = InfluxDBFactory.connect("http://"+EnvUtils.getEnvVariable("HOST_IP")+":8086", "admin", "admin123");
     private static final String DATABASE = "selenium";
 
     public static void initializeDatabase() {
