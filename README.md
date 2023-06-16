@@ -25,10 +25,7 @@ This project aims to develop a solution for real-time monitoring of automated te
 5. Run the tests by executing the `testng.xml` file
 
 ## Usage:
-1. Access the Grafana dashboard to monitor the test results in real-time.
+1. Access the Grafana dashboard on `http://localhost:3000` to monitor the test results in real-time.
 2. Any defects found during the testing process will be automatically created as tickets in Jira.
-
-## License:
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 Thank you for your interest in this project! We hope it proves to be a valuable resource for real-time monitoring and testing.
